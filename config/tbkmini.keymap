@@ -15,7 +15,7 @@
 &lt {
   tapping-term-ms = <300>;
   quick_tap_ms = <200>;
-  flavor = "hold-preferred";
+  flavor = "balanced";
 };
 
 / {
@@ -91,6 +91,79 @@ combos {
             bindings = <&tog 4>;
             slow-release;
         };
+
+	combo_lalt {
+            timeout-ms = <30>;
+            key-positions = <1 12>;
+            bindings = <&kp LALT>;
+            slow-release;
+        };
+	combo_lgui {
+            timeout-ms = <30>;
+            key-positions = <1 13>;
+            bindings = <&kp LGUI>;
+            slow-release;
+        };
+	combo_lctl {
+            timeout-ms = <30>;
+            key-positions = <2 13>;
+            bindings = <&kp LCTL>;
+            slow-release;
+        };
+	combo_ralt {
+            timeout-ms = <30>;
+            key-positions = <8 17>;
+            bindings = <&kp RALT>;
+            slow-release;
+        };
+	combo_rgui {
+            timeout-ms = <30>;
+            key-positions = <8 16>;
+            bindings = <&kp RGUI>;
+            slow-release;
+        };
+	combo_rctl {
+            timeout-ms = <30>;
+            key-positions = <7 16>;
+            bindings = <&kp RCTL>;
+            slow-release;
+        };
+	combo_laltgui {
+            timeout-ms = <30>;
+            key-positions = <11 2 3>;
+            bindings = <&kp LA(LGUI)>;
+            slow-release;
+        };
+	combo_laltctl {
+            timeout-ms = <30>;
+            key-positions = <1 12 3>;
+            bindings = <&kp LA(LCTL)>;
+            slow-release;
+        };
+	combo_lguictl {
+            timeout-ms = <30>;
+            key-positions = <1 2 13>;
+            bindings = <&kp LG(LCTL)>;
+	    slow-release;
+	};
+	combo_raltgui {
+	    timeout-ms = <30>;
+	    key-positions = <6 7 18>;
+	    bindings = <&kp RA(RGUI)>;
+	    slow-release;
+	};
+	combo_raltctl {
+	    timeout-ms = <30>;
+	    key-positions = <6 17 8>;
+	    bindings = <&kp RA(RCTL)>;
+	    slow-release;
+	};
+	combo_rguictl {
+	    timeout-ms = <30>;
+	    key-positions = <16 7 8>;
+	    bindings = <&kp RG(RCTL)>;
+	    slow-release;
+	};
 
                         // home row combos
 

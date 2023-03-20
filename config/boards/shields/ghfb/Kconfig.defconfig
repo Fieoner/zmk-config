@@ -1,0 +1,9 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_GHFB
+
+config ZMK_KEYBOARD_NAME
+	default "Guitar Hero Toy"
+
+endif
