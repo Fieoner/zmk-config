@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
+
+&mt {
+  //  flavor = "tap-preferred";
+   // tapping_term_ms = <200>;
+};
+
+&lt {
+    flavor = "balanced";
+};
+
+/ { 
+
+	behaviors {
+		td0: tap_dance_0 {
+		    compatible = "zmk,behavior-tap-dance";
+		    label = "TAP_DANCE_0";
+		    #binding-cells = <0>;
+		    tapping-term-ms = <200>;
+		    bindings = <&kp Q>, <&sl 1>;
+		};
+	    };
+
+        keymap {
+                compatible = "zmk,keymap";
+
+       		default_layer {
+		bindings = <
+		// frets
+		&kp C &kp E &kp S &kp A &kp R
+		// strum
+		&kp UP &bp DOWN
+		// select
+		&kp SPC
+		// wasd and ps
+		&bp GAME2 &bp GAME3 &bp GAME4 &bp GAME5 &bp GAME6 
+		// start
+		&lt 1 RET
+		>;
+		};
+                
+       		layer_1 {
+		bindings = <
+		// frets
+		&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+		// strum up & down
+		&bt BT_CLR &out OUT_TOG
+		// select
+		&bootloader
+		// wasd + ps
+		&tog 2 &tog 2 &tog 2 &tog 2 &tog 2 
+		// start
+		&trans
+		>;
+		};
+
+       		gamepad_layer {
+		bindings = <
+		// frets
+		&bp GAME1 &bp GAME2 &bp GAME3 &bp GAME4 &bp GAME5
+		// strum
+		&bp GAME6 &bp GAME7
+		// select
+		&bp GAME8
+		// wasd and ps
+		&bp GAME10 &bp GAME11 &bp GAME12 &bp GAME13 &tog 2 
+		// start
+		&bp GAME9
+		>;
+		};
+        
+	};
+};

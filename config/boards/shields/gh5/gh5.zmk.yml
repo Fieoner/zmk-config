@@ -1,0 +1,7 @@
+file_format: "1"
+id: gh5
+name: GuitarHero5
+type: shield
+requires: [seeed_xiao]
+features:
+  - keys
