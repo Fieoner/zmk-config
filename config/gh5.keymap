@@ -39,11 +39,11 @@
 		// frets
 		&kp C &kp E &kp S &kp A &kp R
 		// strum
-		&kp UP &bp DOWN
+		&kp UP &kp DOWN
 		// select
 		&kp SPC
 		// wasd and ps
-		&bp GAME2 &bp GAME3 &bp GAME4 &bp GAME5 &bp GAME6 
+		&kp GAME(2) &kp GAME(3) &kp GAME(4) &kp GAME(5) &kp GAME(6) 
 		// start
 		&lt 1 RET
 		>;
@@ -67,15 +67,15 @@
        		gamepad_layer {
 		bindings = <
 		// frets
-		&bp GAME1 &bp GAME2 &bp GAME3 &bp GAME4 &bp GAME5
+		&kp GAME(1) &kp GAME(2) &kp GAME(3) &kp GAME(4) &kp GAME(5)
 		// strum
-		&bp GAME6 &bp GAME7
+		&kp GAME(6) &kp GAME(7)
 		// select
-		&bp GAME8
+		&kp GAME(8)
 		// wasd and ps
-		&bp GAME10 &bp GAME11 &bp GAME12 &bp GAME13 &tog 2 
+		&kp GAME(10) &kp GAME(11) &kp GAME(12) &kp GAME(13) &tog 2 
 		// start
-		&bp GAME9
+		&kp GAME(9)
 		>;
 		};
         
