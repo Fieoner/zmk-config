@@ -1,0 +1,11 @@
+/{
+	macros {
+        enterprisedb: enterprisedb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp E &kp N &kp T &kp E &kp R &kp P &kp R &kp I &kp S &kp E &kp D &kp B>
+                ;
+            };
+	};
+};
