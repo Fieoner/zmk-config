@@ -5,6 +5,7 @@
  */
 
 #include "charybdis.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &kscan0 {
 	col-gpios
@@ -15,4 +16,76 @@
 		, <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 		, <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 		;
+};
+
+/ {
+    /* Receive trackball input from peripheral */
+    input_splits {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    /* Input processors */
+    input_processors {
+        zip_xy_scaler_move: zip_xy_scaler_move {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_X INPUT_REL_Y>;
+            track-remainders;
+        };
+
+        zip_xy_to_scroll: zip_xy_to_scroll {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            map = <INPUT_REL_X INPUT_REL_HWHEEL
+                   INPUT_REL_Y INPUT_REL_WHEEL>;
+        };
+
+        zip_scroll_scaler: zip_scroll_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+
+        zip_text_mode: zip_text_mode {
+            compatible = "zmk,input-processor-text-mode";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            x-code = <INPUT_REL_X>;
+            y-code = <INPUT_REL_Y>;
+            threshold = <16>;
+        };
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        /* Default: normal mouse movement */
+        input-processors = <&zip_xy_scaler_move 1 1>;
+
+        /* Layers 2,3: scroll mode */
+        scroll_layer_2 {
+            layers = <2>;
+            input-processors = <&zip_xy_to_scroll &zip_scroll_scaler 1 8>;
+        };
+        scroll_layer_3 {
+            layers = <3>;
+            input-processors = <&zip_xy_to_scroll &zip_scroll_scaler 1 8>;
+        };
+
+        /* Layer 1: text mode - arrow keys from trackball movement */
+        text_layer_1 {
+            layers = <1>;
+            input-processors = <&zip_text_mode>;
+        };
+    };
 };

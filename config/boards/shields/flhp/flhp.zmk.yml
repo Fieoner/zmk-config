@@ -1,0 +1,8 @@
+file_format: "1"
+id: flhp
+name: flhp
+type: shield
+url: https://github.com/fieoner/flhp
+requires: [pro_micro]
+features:
+  - keys
